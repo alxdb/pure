@@ -186,9 +186,9 @@ prompt_pure_preprompt_render() {
 	local expanded_prompt
 	expanded_prompt="${(S%%)PROMPT}"
 
-	if [[ $1 == precmd ]]; then
-		# Initial newline, for spaciousness. (or not...)
-		: print
+	if [[ $1 == precmd && -n $prompt_pure_last_prompt ]]; then
+		# Initial newline, for spaciousness. (except for first line)
+		print
 	elif [[ $prompt_pure_last_prompt != $expanded_prompt ]]; then
 		# Redraw the prompt.
 		prompt_pure_reset_prompt
