@@ -59,8 +59,8 @@ prompt_pure_set_title() {
 	# Emacs terminal does not support settings the title.
 	(( ${+EMACS} || ${+INSIDE_EMACS} )) && return
 
+	# Don't set title over serial console.
 	case $TTY in
-		# Don't set title over serial console.
 		/dev/ttyS[0-9]*) return;;
 	esac
 
